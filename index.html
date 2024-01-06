@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Advice generator app</title>
+
+  <link rel="stylesheet" href="./style.css"/>
+</head>
+<body>
+  <div class="card">
+    <h5 class="id">  Advice ID</h5>
+    <p class="advice">ADVICE....</p>
+<div class="line"></div>
+
+  </div>
+
+  <button onclick="datahandler()"><img src="./images/icon-dice.svg"/></button>
+
+  <div class="foot">
+    <h2>Made by <a href="https://github.com/neerajpanchal004">💛Neeraj panchal</a></h2>
+  </div>
+
+
+  
+  
+</body>
+</html>
+
+<script>
+  async function fetchdata (){
+    try {
+      let data = await fetch("https://api.adviceslip.com/advice");
+      data = await data.json();
+      let id = document.querySelector(".id");
+      id.innerText = ` ADVICE#${data.slip.id}`
+
+      let advice = document.querySelector(".advice");
+      advice.innerText = `"${data.slip.advice}"`
+    
+  
+      
+    } catch (error) {
+      console.log(error)
+      
+    }
+  }
+  function datahandler (){
+    fetchdata()
+
+  }
+</script>
